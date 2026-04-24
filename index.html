@@ -1,866 +1,950 @@
 <!DOCTYPE html>
 <html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eagle Eye Vision Technologies | Professional Security Solutions</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-red: #e63946;
-            --primary-blue: #0077b6;
-            --dark-bg: #0a0e27;
-            --darker-bg: #050817;
-            --card-bg: rgba(255,255,255,0.03);
-            --text-light: #ffffff;
-            --text-gray: #a0a0a0;
-            --gradient: linear-gradient(135deg, #e63946 0%, #0077b6 100%);
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eagle Eye Vision Technologies | Professional Security Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Comic+Neue:wght@400;700&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --primary-red: #e63946;
+        --primary-blue: #0077b6;
+        --dark-bg: #0a0e27;
+        --darker-bg: #050817;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --text-light: #ffffff;
+        --text-gray: #a0a0a0;
+        --gradient: linear-gradient(135deg, #e63946 0%, #0077b6 100%);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
+        background: var(--darker-bg);
+        color: var(--text-light);
+        overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--dark-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gradient);
+        border-radius: 4px;
+    }
+
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(5, 8, 23, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .logo-text {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .logo-sub {
+        font-size: 0.75rem;
+        color: var(--text-gray);
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient);
+        transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary-red);
+    }
+
+    .mobile-menu {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-light);
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 100px 5% 50px;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -50%;
+        left: -20%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(0, 119, 182, 0.15) 0%, transparent 70%);
+        animation: pulse 4s ease-in-out infinite 2s;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.5;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        50% {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+    }
+
+    .hero-content {
+        max-width: 1200px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-text h1 {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: slideInLeft 1s ease;
+    }
+
+    .hero-text h2 {
+        font-size: 1.5rem;
+        color: var(--primary-blue);
+        margin-bottom: 20px;
+        font-weight: 600;
+        animation: slideInLeft 1s ease 0.2s both;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin-bottom: 30px;
+        animation: slideInLeft 1s ease 0.4s both;
+    }
+
+    .hero-btns {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        animation: slideInLeft 1s ease 0.6s both;
+    }
+
+    .btn {
+        padding: 15px 35px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary {
+        background: var(--gradient);
+        color: white;
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(230, 57, 70, 0.4);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--text-light);
+        border: 2px solid var(--primary-blue);
+    }
+
+    .btn-secondary:hover {
+        background: var(--primary-blue);
+        transform: translateY(-3px);
+    }
+
+    .hero-image {
+        position: relative;
+        animation: slideInRight 1s ease;
+    }
+
+    .hero-image img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .floating-badge {
+        position: absolute;
+        background: var(--gradient);
+        padding: 15px 25px;
+        border-radius: 15px;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .badge-1 {
+        top: 20px;
+        right: -20px;
+        animation-delay: 0s;
+    }
+
+    .badge-2 {
+        bottom: 40px;
+        left: -30px;
+        animation-delay: 1.5s;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        html {
-            scroll-behavior: smooth;
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--darker-bg);
-            color: var(--text-light);
-            overflow-x: hidden;
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        to {
+            opacity: 1;
+            transform: translateX(0);
         }
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient);
-            border-radius: 4px;
+    }
+
+    /* Section Styles */
+    section {
+        padding: 100px 5%;
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .section-header p {
+        color: var(--text-gray);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Services Section */
+    .services {
+        background: var(--dark-bg);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .service-card {
+        background: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+        transition: left 0.5s;
+    }
+
+    .service-card:hover::before {
+        left: 100%;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary-red);
+        box-shadow: 0 20px 40px rgba(230, 57, 70, 0.1);
+    }
+
+    .service-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 2rem;
+        color: white;
+    }
+
+    .service-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--text-light);
+    }
+
+    .service-card p {
+        color: var(--text-gray);
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+
+    /* Products/Gallery Section */
+    .gallery {
+        background: var(--darker-bg);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .gallery-item {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        aspect-ratio: 16/10;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+        border-color: var(--primary-blue);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 119, 182, 0.2);
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        padding: 30px 20px 20px;
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+    }
+
+    .gallery-overlay h4 {
+        color: var(--primary-red);
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+
+    .gallery-overlay p {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    /* About Section */
+    .about {
+        background: var(--dark-bg);
+    }
+
+    .about-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .about-image {
+        position: relative;
+    }
+
+    .about-image img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .about-image::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 100%;
+        height: 100%;
+        border: 3px solid var(--primary-red);
+        border-radius: 20px;
+        z-index: -1;
+    }
+
+    .about-text h3 {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--primary-blue);
+    }
+
+    .about-text p {
+        color: var(--text-gray);
+        line-height: 1.9;
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+    }
+
+    .features-list {
+        list-style: none;
+        margin-top: 30px;
+    }
+
+    .features-list li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: var(--text-light);
+        font-size: 1rem;
+    }
+
+    .features-list i {
+        color: var(--primary-red);
+        font-size: 1.2rem;
+    }
+
+    /* Stats Section */
+    .stats {
+        background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(0, 119, 182, 0.1) 100%);
+        padding: 80px 5%;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .stat-item h3 {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        font-size: 3rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-item p {
+        color: var(--text-gray);
+        margin-top: 10px;
+        font-size: 1.1rem;
+    }
+
+    /* Contact Section */
+    .contact {
+        background: var(--darker-bg);
+    }
+
+    .contact-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+
+    .contact-info h3 {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--primary-red);
+    }
+
+    .contact-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 25px;
+        background: var(--card-bg);
+        border-radius: 15px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+        border-color: var(--primary-blue);
+        transform: translateX(10px);
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--gradient);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .contact-details h4 {
+        color: var(--text-light);
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+    }
+
+    .contact-details p,
+    .contact-details a {
+        color: var(--text-gray);
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 0.95rem;
+    }
+
+    .contact-details a:hover {
+        color: var(--primary-blue);
+    }
+
+    .contact-form {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-light);
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: var(--text-light);
+        font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    /* Footer */
+    footer {
+        background: var(--dark-bg);
+        padding: 50px 5% 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand .logo-text {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-brand p {
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-links a {
+        width: 45px;
+        height: 45px;
+        background: var(--card-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 1.2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+        background: var(--gradient);
+        transform: translateY(-5px);
+        border-color: transparent;
+    }
+
+    .footer-links h4 {
+        font-family: 'Bauhaus 93', 'Righteous', sans-serif;
+        color: var(--primary-blue);
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    .footer-links ul {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        color: var(--text-gray);
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary-red);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom span {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+    }
+
+    /* 24/7 Badge */
+    .badge-24-7 {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--gradient);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+        z-index: 999;
+        animation: pulse-badge 2s ease-in-out infinite;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    @keyframes pulse-badge {
+
+        0%,
+        100% {
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(5, 8, 23, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+        50% {
+            box-shadow: 0 10px 40px rgba(230, 57, 70, 0.6);
         }
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    /* Responsive */
+    @media (max-width: 968px) {
 
-        .logo img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-sub {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-red);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 100px 5% 50px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(230,57,70,0.15) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0,119,182,0.15) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite 2s;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+        .hero-content,
+        .about-content,
+        .contact-content {
+            grid-template-columns: 1fr;
         }
 
         .hero-text h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInLeft 1s ease;
-        }
-
-        .hero-text h2 {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            font-weight: 600;
-            animation: slideInLeft 1s ease 0.2s both;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 30px;
-            animation: slideInLeft 1s ease 0.4s both;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            animation: slideInLeft 1s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 10px 30px rgba(230,57,70,0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(230,57,70,0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--primary-blue);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-
-        .hero-image {
-            position: relative;
-            animation: slideInRight 1s ease;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .floating-badge {
-            position: absolute;
-            background: var(--gradient);
-            padding: 15px 25px;
-            border-radius: 15px;
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .badge-1 {
-            top: 20px;
-            right: -20px;
-            animation-delay: 0s;
-        }
-
-        .badge-2 {
-            bottom: 40px;
-            left: -30px;
-            animation-delay: 1.5s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 100px 5%;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-header p {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Services Section */
-        .services {
-            background: var(--dark-bg);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: left 0.5s;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-red);
-            box-shadow: 0 20px 40px rgba(230,57,70,0.1);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-
-        .service-card p {
-            color: var(--text-gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        /* Products/Gallery Section */
-        .gallery {
-            background: var(--darker-bg);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.1);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            aspect-ratio: 16/10;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,119,182,0.2);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 30px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-overlay h4 {
-            color: var(--primary-red);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .gallery-overlay p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--dark-bg);
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--primary-red);
-            border-radius: 20px;
-            z-index: -1;
-        }
-
-        .about-text h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary-blue);
-        }
-
-        .about-text p {
-            color: var(--text-gray);
-            line-height: 1.9;
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .features-list li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        .features-list i {
-            color: var(--primary-red);
-            font-size: 1.2rem;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, rgba(230,57,70,0.1) 0%, rgba(0,119,182,0.1) 100%);
-            padding: 80px 5%;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-item p {
-            color: var(--text-gray);
-            margin-top: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--darker-bg);
-        }
-
-        .contact-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--primary-red);
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 25px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            border-color: var(--primary-blue);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .contact-details h4 {
-            color: var(--text-light);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .contact-details p, .contact-details a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .contact-details a:hover {
-            color: var(--primary-blue);
-        }
-
-        .contact-form {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            color: var(--text-light);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            background: rgba(255,255,255,0.08);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-bg);
-            padding: 50px 5% 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand .logo-text {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .footer-brand p {
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 20px;
+            grid-template-columns: 1fr;
+            text-align: center;
         }
 
         .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: var(--card-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1.2rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
         }
 
-        .social-links a:hover {
-            background: var(--gradient);
-            transform: translateY(-5px);
-            border-color: transparent;
+        .nav-links {
+            display: none;
         }
 
-        .footer-links h4 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+        .mobile-menu {
+            display: block;
         }
 
-        .footer-links ul {
-            list-style: none;
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-text h1 {
+            font-size: 2rem;
         }
 
-        .footer-links li {
-            margin-bottom: 12px;
+        .section-header h2 {
+            font-size: 1.8rem;
         }
 
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-red);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-gray);
+        .btn {
+            padding: 12px 25px;
             font-size: 0.9rem;
         }
+    }
 
-        .footer-bottom span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
+    /* Loading Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* WhatsApp Floating Icon */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 2rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        animation: pulse-whatsapp 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: translateY(-5px);
+    }
+
+    @keyframes pulse-whatsapp {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
         }
 
-        /* 24/7 Badge */
-        .badge-24-7 {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--gradient);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            box-shadow: 0 10px 30px rgba(230,57,70,0.4);
-            z-index: 999;
-            animation: pulse-badge 2s ease-in-out infinite;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            text-decoration: none;
+        70% {
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
         }
 
-        @keyframes pulse-badge {
-            0%, 100% { box-shadow: 0 10px 30px rgba(230,57,70,0.4); }
-            50% { box-shadow: 0 10px 40px rgba(230,57,70,0.6); }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
         }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero-content,
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .btn {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Loading Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    }
+</style>
 </head>
+
 <body>
 
     <!-- Navigation -->
@@ -873,11 +957,11 @@
             </div>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">මුල් පිටුව</a></li>
-            <li><a href="#services">සේවා</a></li>
-            <li><a href="#gallery">පින්තූර</a></li>
-            <li><a href="#about">අපි ගැන</a></li>
-            <li><a href="#contact">සම්බන්ධතා</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
         </ul>
         <div class="mobile-menu" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -888,25 +972,27 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>ඔබගේ ආරක්ෂාව අපගේ ප්‍රමුඛතාවය</h1>
-                <h2>නවීන සීසීටීවී හා ආරක්ෂක පද්ධති</h2>
-                <p>ඊගල් අයි විෂන් ටෙක්නොලොජීස් ආයතනය මගින් ඔබට ලබා දෙන්නේ පරිපූර්ණ ආරක්ෂක විසඳුම් පමණක් නොවේ. අපගේ විශේෂඥ සේවාදායකත්වය සහ නවීන තාක්ෂණය ඔබගේ නිවස, කාර්යාලය හා ව්‍යාපාරය සුරක්ෂිත කිරීමට අපි කැපවී සිටිමු.</p>
+                <h1>Your Safety, Our Ultimate Priority</h1>
+                <h2>Advanced CCTV & Security Systems</h2>
+                <p>Eagle Eye Vision Technologies provides more than just comprehensive security solutions. With expert
+                    service and cutting-edge technology, we are dedicated to safeguarding your home, office, and
+                    business.</p>
                 <div class="hero-btns">
                     <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> අමතන්න
+                        <i class="fas fa-phone"></i> Contact Us
                     </a>
                     <a href="#services" class="btn btn-secondary">
-                        <i class="fas fa-shield-alt"></i> සේවා බලන්න
+                        <i class="fas fa-shield-alt"></i> View Services
                     </a>
                 </div>
             </div>
             <div class="hero-image">
                 <img src="image(1).png" alt="Security Services">
                 <div class="floating-badge badge-1">
-                    <i class="fas fa-clock"></i> 24/7 සේවාව
+                    <i class="fas fa-clock"></i> 24/7 Support
                 </div>
                 <div class="floating-badge badge-2">
-                    <i class="fas fa-award"></i> වසර ගණනාවක අත්දැකීම
+                    <i class="fas fa-award"></i> Years of Expertise
                 </div>
             </div>
         </div>
@@ -915,51 +1001,57 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-header fade-in">
-            <h2>අපගේ සේවා</h2>
-            <p>ඔබගේ සියලු තාක්ෂණික අවශ්‍යතා සඳහා එකම ස්ථානය</p>
+            <h2>Our Services</h2>
+            <p>The one-stop destination for all your technical needs</p>
         </div>
         <div class="services-grid">
             <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-video"></i>
                 </div>
-                <h3>සීසීටීවී කැමරා</h3>
-                <p>HIKVISION, EZVIZ ඇතුළු ප්‍රමුඛ බ්‍රෑන්ඩ් වල උසස් තත්ත්වයේ සීසීටීවී කැමරා ස්ථාපනය සහ අලෙවිය. දිවා රාත්‍රී දෘශ්‍යතාව සහිත 2K/4K කැමරා.</p>
+                <h3>CCTV Cameras</h3>
+                <p>Installation and sales of high-quality CCTV cameras from leading brands like HIKVISION and EZVIZ.
+                    2K/4K cameras with day and night vision capabilities.</p>
             </div>
             <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-door-closed"></i>
                 </div>
-                <h3>ස්මාර්ට් දොර තාලම්</h3>
-                <p>ඇඟිලි සටහන්, මුහුණු හඳුනාගැනීම සහ පාස්වර්ඩ් තාක්ෂණයෙන් යුත් නවීන ඩිජිටල් දොර තාලම් ස්ථාපනය සහ නඩත්තුව.</p>
+                <h3>Smart Door Locks</h3>
+                <p>Installation and maintenance of modern digital door locks featuring fingerprint, facial recognition,
+                    and password technology.</p>
             </div>
             <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-bell"></i>
                 </div>
-                <h3>අනතුරු ඇඟවීමේ පද්ධති</h3>
-                <p>සංවේදක (Sensors), අනතුරු ඇඟවීම් (Alarms) සහ සම්පූර්ණ ආරක්ෂක පද්ධති ස්ථාපනය. ඔබගේ දේපළ සුරක්ෂිතව තබා ගන්න.</p>
+                <h3>Alarm Systems</h3>
+                <p>Installation of sensors, alarms, and complete security systems. Keep your property safe and secure.
+                </p>
             </div>
             <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-network-wired"></i>
                 </div>
-                <h3>නෙට්වර්කින්</h3>
-                <p>වෘත්තීය නෙට්වර්ක් කේබල් ස්ථාපනය, Wi-Fi පද්ධති සකස් කිරීම සහ නෙට්වර්ක් Troubleshooting සේවා.</p>
+                <h3>Networking Solutions</h3>
+                <p>Professional network cabling, Wi-Fi system setup, and comprehensive network troubleshooting services.
+                </p>
             </div>
             <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
-                <h3>පරිගණක අලුත්වැඩියාව</h3>
-                <p>හාඩ්වෙයර් හා සොෆ්ට්වෙයර් ගැටලු විසඳීම, වෛරස් ඉවත් කිරීම, OS ස්ථාපනය සහ පරිගණක අංගෝපාංග උත්ශ්‍රේණි කිරීම.</p>
+                <h3>Computer Repairs</h3>
+                <p>Hardware and software troubleshooting, virus removal, OS installation, and computer component
+                    upgrades.</p>
             </div>
             <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-bolt"></i>
                 </div>
-                <h3>විදුලි කාර්යයන්</h3>
-                <p>විදුලි පරිපථ ස්ථාපනය, නඩත්තුව සහ අලුත්වැඩියාව. සුරක්ෂිත හා කාර්යක්ෂම විදුලි පද්ධති සඳහා විශේෂඥ සේවාව.</p>
+                <h3>Electrical Works</h3>
+                <p>Electrical circuit installation, maintenance, and repairs. Expert service for safe and efficient
+                    electrical systems.</p>
             </div>
         </div>
     </section>
@@ -967,36 +1059,36 @@
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
         <div class="section-header fade-in">
-            <h2>අපගේ ව්‍යාපෘති</h2>
-            <p>අපි සිදු කළ ඇතැම් ව්‍යාපෘති වලින් කොටස්</p>
+            <h2>Our Projects</h2>
+            <p>A glimpse into some of our successful projects</p>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item fade-in">
                 <img src="image(2).png" alt="EZVIZ Products">
                 <div class="gallery-overlay">
-                    <h4>EZVIZ ස්මාර්ට් කැමරා</h4>
-                    <p>නවීන 2K ස්මාර්ට් හෝම් කැමරා සහ Wireless NVR පද්ධති</p>
+                    <h4>EZVIZ Smart Cameras</h4>
+                    <p>Modern 2K smart home cameras and wireless NVR systems</p>
                 </div>
             </div>
             <div class="gallery-item fade-in">
                 <img src="image(3).png" alt="CCTV Live View">
                 <div class="gallery-overlay">
-                    <h4>Live මොනිටරිං පද්ධති</h4>
-                    <p>රාත්‍රී දෘශ්‍යතාව සහිත බහු-කැමරා මොනිටරිං විසඳුම්</p>
+                    <h4>Live Monitoring Systems</h4>
+                    <p>Multi-camera monitoring solutions with superior night vision</p>
                 </div>
             </div>
             <div class="gallery-item fade-in">
                 <img src="image(4).png" alt="Security Systems">
                 <div class="gallery-overlay">
-                    <h4>සම්පූර්ණ ආරක්ෂක විසඳුම්</h4>
-                    <p>HIKVISION CCTV, අනතුරු ඇඟවීම්, සංවේදක සහ දොර තාලම්</p>
+                    <h4>Complete Security Solutions</h4>
+                    <p>HIKVISION CCTV, smart alarms, sensors, and digital door locks</p>
                 </div>
             </div>
             <div class="gallery-item fade-in">
                 <img src="image(5).png" alt="Hikvision Products">
                 <div class="gallery-overlay">
-                    <h4>HIKVISION ප්‍රොඩක්ට්</h4>
-                    <p>වසර 2ක වගකීමක් සහිත මුල් HIKVISION ආරක්ෂක උපකරණ</p>
+                    <h4>HIKVISION Products</h4>
+                    <p>Genuine HIKVISION security equipment with a 2-year warranty</p>
                 </div>
             </div>
         </div>
@@ -1006,18 +1098,21 @@
     <section class="about" id="about">
         <div class="about-content">
             <div class="about-image fade-in">
-                <img src="image(1).png" alt="About Eagle Eye">
+                <img src="image(1).png" alt="Eagle Eye Security Promotions and Services">
             </div>
             <div class="about-text fade-in">
-                <h3>අපි ගැන</h3>
-                <p><strong>ඊගල් අයි විෂන් ටෙක්නොලොජීස්</strong> යනු ඔබගේ ආරක්ෂක අවශ්‍යතා සඳහා විශ්වසනීය සහකරුවායි. රන්දික කුමාර මහතාගේ මගපෙන්වීමෙන්, අපි ජා-ඇල, කඳාන, වත්තල සහ නීගොම්බෝ ප්‍රදේශවල සේවය ලබා දෙමු.</p>
-                <p>අපගේ පළපුරුද්ද සහිත කණ්ඩායම ඔබට වඩාත් සුදුසු ආරක්ෂක විසඳුම තෝරා ගැනීමට උදව් කරයි. අපි HIKVISION සහ EZVIZ ඇතුළු ප්‍රමුඛ බ්‍රෑන්ඩ් වල මුල් උපකරණ පමණක් භාවිතා කරමු.</p>
+                <h3>About Us</h3>
+                <p><strong>Eagle Eye Vision Technologies</strong> is your trusted partner for all security needs. Guided
+                    by Mr. Randika Kumara, we proudly offer our services across all regions of Sri Lanka.</p>
+                <p>Our highly experienced team will assist you in choosing the most suitable security solutions tailored
+                    to your specific requirements. We exclusively utilize original equipment from globally renowned
+                    brands such as HIKVISION and EZVIZ.</p>
                 <ul class="features-list">
-                    <li><i class="fas fa-check-circle"></i> වසර ගණනාවක වෘත්තීය අත්දැකීම</li>
-                    <li><i class="fas fa-check-circle"></i> ප්‍රමුඛ තත්ත්වයේ උපකරණ</li>
-                    <li><i class="fas fa-check-circle"></i> තරඟකාරී මිල ගණන්</li>
-                    <li><i class="fas fa-check-circle"></i> පසු විපාකමය සේවාව</li>
-                    <li><i class="fas fa-check-circle"></i> පැය 24 පූර්ණ සේවාව</li>
+                    <li><i class="fas fa-check-circle"></i> Years of Professional Experience</li>
+                    <li><i class="fas fa-check-circle"></i> Premium Quality Equipment</li>
+                    <li><i class="fas fa-check-circle"></i> Highly Competitive Pricing</li>
+                    <li><i class="fas fa-check-circle"></i> Excellent After-Sales Service</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 Comprehensive Support</li>
                 </ul>
             </div>
         </div>
@@ -1028,19 +1123,19 @@
         <div class="stats-grid fade-in">
             <div class="stat-item">
                 <h3>500+</h3>
-                <p>සතුටුදායක ගනුදෙනුකරුවන්</p>
+                <p>Satisfied Clients</p>
             </div>
             <div class="stat-item">
                 <h3>1000+</h3>
-                <p>ස්ථාපන කටයුතු</p>
+                <p>Installations Completed</p>
             </div>
             <div class="stat-item">
                 <h3>24/7</h3>
-                <p>සේවා ලබා ගත හැකි වේලාව</p>
+                <p>Service Availability</p>
             </div>
             <div class="stat-item">
                 <h3>100%</h3>
-                <p>විශ්වසනීයත්වය</p>
+                <p>Reliability Guaranteed</p>
             </div>
         </div>
     </section>
@@ -1048,20 +1143,20 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="section-header fade-in">
-            <h2>සම්බන්ධ වන්න</h2>
-            <p>ඔබගේ ආරක්ෂක අවශ්‍යතා සඳහා අදම අප හා සම්බන්ධ වන්න</p>
+            <h2>Get in Touch</h2>
+            <p>Contact us today for your ultimate security requirements</p>
         </div>
         <div class="contact-content">
             <div class="contact-info fade-in">
-                <h3>සම්බන්ධතා තොරතුරු</h3>
-                
+                <h3>Contact Information</h3>
+
                 <div class="contact-card">
                     <div class="contact-icon">
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="contact-details">
-                        <h4>මගේ නම</h4>
-                        <p>රන්දික කුමාර</p>
+                        <h4>Representative</h4>
+                        <p>Randika Kumara</p>
                     </div>
                 </div>
 
@@ -1070,7 +1165,7 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div class="contact-details">
-                        <h4>දුරකථන අංකය</h4>
+                        <h4>Phone Number</h4>
                         <a href="tel:0772867022">077 286 7022</a>
                     </div>
                 </div>
@@ -1080,7 +1175,7 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="contact-details">
-                        <h4>ඊමේල්</h4>
+                        <h4>Email Address</h4>
                         <a href="mailto:randika.jwbc@gmail.com">randika.jwbc@gmail.com</a>
                     </div>
                 </div>
@@ -1090,8 +1185,8 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="contact-details">
-                        <h4>සේවා ප්‍රදේශ</h4>
-                        <p>ලංකාවේ සියලුම ප්‍රදේශවල</p>
+                        <h4>Service Areas</h4>
+                        <p>Island-wide Service</p>
                     </div>
                 </div>
 
@@ -1100,32 +1195,32 @@
                         <i class="fab fa-facebook-f"></i>
                     </div>
                     <div class="contact-details">
-                        <h4>Facebook පිටුව</h4>
-                        <a href="#" target="_blank">Eagle Eye Vision Technologies</a>
+                        <h4>Facebook Page</h4>
+                        <a href="https://web.facebook.com/eagleyevt" target="_blank">Eagle Eye Vision Technologies</a>
                     </div>
                 </div>
             </div>
 
             <div class="contact-form fade-in">
-                <form onsubmit="event.preventDefault(); alert('ඔබගේ පණිවිඩය යැවීමට උත්සාහ කරමින්...');">
+                <form onsubmit="event.preventDefault(); alert('Sending your message...');">
                     <div class="form-group">
-                        <label>ඔබගේ නම</label>
-                        <input type="text" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Enter your name" required>
                     </div>
                     <div class="form-group">
-                        <label>දුරකථන අංකය</label>
-                        <input type="tel" placeholder="දුරකථන අංකය ඇතුළත් කරන්න" required>
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="Enter your phone number" required>
                     </div>
                     <div class="form-group">
-                        <label>ඊමේල්</label>
-                        <input type="email" placeholder="ඊමේල් ලිපිනය ඇතුළත් කරන්න">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email address">
                     </div>
                     <div class="form-group">
-                        <label>පණිවිඩය</label>
-                        <textarea placeholder="ඔබගේ ප්‍රශ්නය හෝ අවශ්‍යතාවය විස්තර කරන්න..." required></textarea>
+                        <label>Message</label>
+                        <textarea placeholder="Describe your inquiry or requirement..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-paper-plane"></i> පණිවිඩය යවන්න
+                        <i class="fas fa-paper-plane"></i> Send Message
                     </button>
                 </form>
             </div>
@@ -1137,46 +1232,52 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="logo-text">EAGLE EYE</div>
-                <p>ඔබගේ ආරක්ෂාව අපගේ ප්‍රමුඛතාවය. නවීන තාක්ෂණයෙන් යුත් පරිපූර්ණ ආරක්ෂක විසඳුම් ඔබ වෙතටම.</p>
+                <p>Your security is our priority. Delivering complete security solutions with modern technology directly
+                    to you.</p>
                 <div class="social-links">
-                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://web.facebook.com/eagleyevt" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://wa.me/94772867022" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     <a href="mailto:randika.jwbc@gmail.com"><i class="fas fa-envelope"></i></a>
                     <a href="tel:0772867022"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
             <div class="footer-links">
-                <h4>සේවා</h4>
+                <h4>Services</h4>
                 <ul>
-                    <li><a href="#services">සීසීටීවී කැමරා</a></li>
-                    <li><a href="#services">ස්මාර්ට් දොර තාලම්</a></li>
-                    <li><a href="#services">අනතුරු ඇඟවීම්</a></li>
-                    <li><a href="#services">නෙට්වර්කින්</a></li>
-                    <li><a href="#services">විදුලි කාර්යයන්</a></li>
+                    <li><a href="#services">CCTV Cameras</a></li>
+                    <li><a href="#services">Smart Door Locks</a></li>
+                    <li><a href="#services">Alarm Systems</a></li>
+                    <li><a href="#services">Networking</a></li>
+                    <li><a href="#services">Electrical Works</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>ඉක්මන් සම්බන්ධතා</h4>
+                <h4>Quick Links</h4>
                 <ul>
                     <li><a href="tel:0772867022">077 286 7022</a></li>
-                    <li><a href="mailto:randika.jwbc@gmail.com">ඊමේල් යවන්න</a></li>
-                    <li><a href="#contact">සම්බන්ධ වන්න</a></li>
+                    <li><a href="mailto:randika.jwbc@gmail.com">Send an Email</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 <span>Eagle Eye Vision Technologies</span>. සියලු හිමිකම් ඇවිරිණි. නිර්මාණය කළේ රන්දික කුමාර</p>
+            <p>© 2026 <span>nextgen web studio</span>. All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- 24/7 Floating Badge -->
     <a href="tel:0772867022" class="badge-24-7">
-        <i class="fas fa-headset"></i> පැය 24 සේවාව
+        <i class="fas fa-headset"></i> 24/7 Support
+    </a>
+
+    <!-- WhatsApp Floating Icon -->
+    <a href="https://wa.me/94772867022" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
         // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.style.padding = '15px 5%';
@@ -1193,7 +1294,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -1225,7 +1326,7 @@
 
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1239,4 +1340,5 @@
     </script>
 
 </body>
+
 </html>
